@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'acount creation' do
   it 'allows user to create account' do
-    cisit root_path
+    visit root_path
     click_link 'Create Account'
 
     fill_in 'Name', with: 'George'
