@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Account, type: :model do
   describe 'validations' do
+    it { should validate_presence_of :owner }
     it { should validate_presence_of :subdomain }
     it { should validate_uniqueness_of(:subdomain).case_insensitive }
 
@@ -21,6 +22,6 @@ RSpec.describe Account, type: :model do
   end
 
   describe 'associations' do
-    it 'should have ownner'
+    it { should belong_to :owner }
   end
 end
