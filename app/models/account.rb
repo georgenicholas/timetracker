@@ -11,5 +11,5 @@ class Account < ActiveRecord::Base
 private
   def downcase_subdomain
     self.subdomain = subdomain.try(:downcase)
-  end             
+  end
 end
