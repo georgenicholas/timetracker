@@ -1,9 +1,10 @@
-<h2>Create an Account</h2>
+<div class="col-md-6 col-med-offset-3 panel panel-default">
+  <div class="panel-body">
+    <h2>Create an Account</h2>
 
-<%= form_for @account do |f| %>
-  <p>
-    <%= f.label :subdomain %>
-    <%= f.text_field :subdomain %>
-  </p>
-  <%= f.submit %>
-<% end %>
+    <%= simple_form_for @account do |f| %>
+      <%= f.input :subdomain, label: 'Subdomain', error: 'Subdomain is required' %>
+      <%= f.submit :submit, class: 'btn btn-primary' %>
+    <% end %>
+</div>
+</div>
