@@ -3,6 +3,10 @@
     <h2>Create an Account</h2>
 
     <%= simple_form_for @account do |f| %>
+      <%= f.input :subdomain, label: 'name', error: 'Name is required' %>
+      <%= f.input :subdomain, label: 'email', placeholder: 'your.email@gmail.com', error: 'Email is required' %>
+      <%= f.input :subdomain, label: 'password', error: 'Password is required' %>
+      <%= f.input :subdomain, label: 'password_confirmation', error: 'Password is required' %>
       <%= f.input :subdomain, label: 'Subdomain', error: 'Subdomain is required' %>
       <%= f.submit :submit, class: 'btn btn-primary' %>
     <% end %>
