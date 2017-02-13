@@ -17,6 +17,7 @@ gem 'bootswatch-rails'
 gem 'simple_form'
 gem 'devise'
 
+
 group :development, :test do
   gem 'byebug'
 end
@@ -24,6 +25,7 @@ end
 group :development do
   gem 'web-console', '~> 2.0'
   gem 'spring'
+
 end
 
 group :development, :test do
@@ -35,4 +37,5 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'database_cleaner'
   gem 'shoulda-matchers'
+  gem 'pry-byebug'
 end
