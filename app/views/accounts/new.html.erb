@@ -2,14 +2,14 @@
   <div class="panel-body">
     <h2>Create an Account</h2>
 
-    <%= simple_form_for @account do |f| %>
-      <%= f.input :name, label: 'Name', error: 'Name is required' %>
-      <%= f.input :email, label: 'Email', placeholder: 'your.email@gmail.com', error: 'Email is required' %>
-      <%= f.input :password, label: 'Password', error: 'Password is required' %>
-      <%= f.input :password_confirmation, label: 'Password Confirmation', error: 'Password is required' %>
-      <%= f.input :subdomain, label: 'Subdomain', error: 'Subdomain is required' %>
-      <%= f.submit :Submit, class: 'btn btn-primary' %>
+    <%= form_for @account do |f| %>
+      <%= form_group_for f, :subdomain do %>
+        <div class="input-group">
+          <%= f.text_field :subdomain, class: 'form-control' %>
+          <span class="input-group-addon">.timetracker.dev</span>
+        </div>
+      <% end %>
+    <%= f.submit class: 'btn btn-primary' %>
     <% end %>
-
-</div>
+  </div>
 </div>
