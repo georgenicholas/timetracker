@@ -20,6 +20,7 @@ require "shoulda/matchers"
 end
 
 RSpec.configure do |config|
+
 =begin
 
   # These two settings work together to allow you to limit a spec run
