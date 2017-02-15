@@ -5,6 +5,7 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'shoulda/matchers'
 require 'capybara/rails'
+require 'factory_girl'
 # require 'devise'
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -27,7 +28,7 @@ Capybara.configure do |config|
 end
 
 RSpec.configure do |config|
-  
+
   config.include Rails.application.routes.url_helpers
   config.include FactoryGirl::Syntax::Methods
   # config.include Devise::Test::ControllerHelpers, :type => :controller
