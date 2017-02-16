@@ -1,3 +1,5 @@
+
+
 def drop_schemas
   connection = ActiveRecord::Base.connection.raw_connection
   schemas = connection.query(%Q{

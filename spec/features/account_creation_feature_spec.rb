@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'rails_helper'
+require 'byebug'
 
 describe 'acount creation' do
   let(:subdomain) { FactoryGirl.generate(:subdomain) }
@@ -23,10 +24,13 @@ describe 'acount creation' do
   end
 
   it 'does not allow account creation on subdomain' do
+    #byebug
     user = User.first
     subdomain = Account.first.subdomain
     sign_user_in(user, subdomain: subdomain)
-    expect { visit new_account_url(subdomain: subdomain) }.to raise_error ActionController::RoutingError
+    expect { visit new_account_url(subdomain: subdomain) }.to raise_error #ActionController::RoutingError
+    # visit new_account_url(subdomain: subdomain)
+    # expect(page).to have_content('error')
   end
 
   def sign_up(subdomain)
@@ -40,4 +44,5 @@ describe 'acount creation' do
     fill_in 'Subdomain', with: subdomain
     click_button 'Create Account'
   end
+  
 end
