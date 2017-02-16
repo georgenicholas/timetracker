@@ -15,6 +15,20 @@ describe 'acount creation' do
     expect(page.current_url).to include(subdomain)
   end
 
+  it 'allows account followup creation' do
+    subdomain2 = "#{subdomain}2"
+    sign_up(subdomain2)
+    expect(page.current_url).to include(subdomain2)
+    expect(Account.all.count).to eq(2)
+  end
+
+  it 'does not allow account creation on subdomain' do
+    user = User.first
+    subdomain = Account.first.subdomain
+    sign_user_in(user, subdomain: subdomain)
+    expect { visit new_account_url(subdomain: subdomain) }.to raise_error ActionController::RoutingError
+  end
+
   def sign_up(subdomain)
     visit root_url(subdomain: false)
     click_link 'Create Account'

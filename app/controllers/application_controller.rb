@@ -3,13 +3,21 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_filter :load_schema
+  before_filter :load_schema, :authenticate_user!
 
   private
     def load_schema
       Apartment::Tenant.switch!('public')
       return unless request.subdomain.present?
 
-      Apartment::Tenant.switch!(request.subdomain)
+      account = Account.find_by(subdomain: request.subdomain).first
+      if account
+        Apartment::Tenant.switch!(request.subdomain)
+      else
+        redirect_to root_url(subdomain: false)
+      end
+    end
+    def after_sign_out_path_for(resource_or_scope)
+      new_user_session_path
     end
   end
