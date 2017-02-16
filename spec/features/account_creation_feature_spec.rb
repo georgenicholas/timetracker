@@ -28,9 +28,8 @@ describe 'acount creation' do
     user = User.first
     subdomain = Account.first.subdomain
     sign_user_in(user, subdomain: subdomain)
-    expect { visit new_account_url(subdomain: subdomain) }.to raise_error #ActionController::RoutingError
-    # visit new_account_url(subdomain: subdomain)
-    # expect(page).to have_content('error')
+    visit new_account_url(subdomain: subdomain)
+    expect(page).to have_content('Routing Error')
   end
 
   def sign_up(subdomain)
@@ -44,5 +43,5 @@ describe 'acount creation' do
     fill_in 'Subdomain', with: subdomain
     click_button 'Create Account'
   end
-  
+
 end
