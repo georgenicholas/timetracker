@@ -5,7 +5,7 @@ class SubdomainPresent
 end
 
 class SubdomainBlank
-  def self.matches(request)
+  def self.matches?(request)
     request.subdomain.blank?
   end
 end
