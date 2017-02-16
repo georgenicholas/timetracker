@@ -17,6 +17,7 @@ gem 'bootswatch-rails'
 gem 'simple_form'
 gem 'devise'
 gem 'apartment'
+gem 'devise_invitable', '~>1.7.0'
 
 
 group :development, :test do
@@ -39,4 +40,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'shoulda-matchers'
   gem 'pry-byebug'
+  gem 'letter_opener'
+  gem 'email_spec'
+
 end
