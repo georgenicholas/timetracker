@@ -16,6 +16,7 @@ gem 'bootswatch-rails'
 
 gem 'simple_form'
 gem 'devise'
+gem 'apartment'
 
 
 group :development, :test do
