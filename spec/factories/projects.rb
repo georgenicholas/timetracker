@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :project do
-    name "MyString"
-    client "MyString"
+    sequence(:name) { |n| "My Project #{n}" }
+    client "My Client"
     archived false
   end
 end

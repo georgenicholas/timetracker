@@ -7,7 +7,8 @@ describe 'invitations' do
   let!(:account) { create(:account_with_schema, owner: user) }
 
   before do
-    set_subdomain(account.subdomain)  
+    Apartment::Tenant.switch!(account.subdomain)
+    set_subdomain(account.subdomain)
     sign_user_in(user, subdomain: account.subdomain)
     visit users_path
   end
@@ -31,5 +32,27 @@ describe 'invitations' do
 
     click_button "Create Project"
     expect(page).to have_text "can't be blank"
+  end
+
+  it "allows projects to be edited" do
+    project = create(:project)
+    visit projects_path
+    expect(page).to have_text project.name
+    click_edit_project_button project.name
+    #binding.pry
+    fill_in "Name", with: "A new name"
+    check "Archived"
+    click_button "Update Project"
+
+    expect(page).to have_text "Project updated!"
+    #binding.pry
+    expect(page).to have_text "A new name"
+  end
+
+  def click_edit_project_button(project_name)
+    #binding.pry
+    within find("h3", text: project_name) do
+      page.first("a").click
+    end
   end
 end
