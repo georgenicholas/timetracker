@@ -46,9 +46,12 @@ describe 'invitations' do
 
       it 'confirms account create' do
         expect(page).to have_content 'Your password was set successfully.'
+        click_link 'Sign out'
       end
 
       it 'shows a checkmark on the users page' do
+        set_subdomain(account.subdomain)
+        sign_user_in(user, subdomain: account.subdomain)
         visit users_path
         within('tr', text: 'Ryan Boland') do
           expect(page).to have_selector '.glyphicon-ok'
