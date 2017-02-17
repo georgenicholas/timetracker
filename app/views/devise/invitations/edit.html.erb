@@ -1,11 +1,15 @@
-<h2><%= t 'devise.invitations.edit.header' %></h2>
+<div class="col-md-6 col-md-offset-3 panel panel-default">
+  <div class="panel-body">
+    <h3>Create an Account</h2>
 
-<%= simple_form_for resource, as: resource_name, url: invitation_path(resource_name), html: { method: :put } do |f| %>
-  <%= devise_error_messages! %>
-  <%= f.hidden_field :invitation_token %>
-
-  <%= f.input :password %>
-  <%= f.input :password_confirmation %>
-
-  <%= f.button :submit, t("devise.invitations.edit.submit_button") %>
-<% end %>
+      <%= simple_form_for resource, :as => resource_name,
+                                    :url => invitation_path(resource_name),
+                                    :html => { :method => :put } do |f| %>
+        <%= f.input :invitation_token, as: :hidden %>
+        <%= f.input :name %>
+        <%= f.input :password %>
+        <%= f.input :password_confirmation %>
+        <%= f.button :submit, "Create Account", class: 'btn-primary' %>
+      <% end %>
+    </div>
+  </div>

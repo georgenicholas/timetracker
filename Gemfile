@@ -41,6 +41,5 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'pry-byebug'
   gem 'letter_opener'
-  gem 'email_spec'
-
+  gem 'capybara-email'
 end

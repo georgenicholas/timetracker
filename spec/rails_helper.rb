@@ -7,14 +7,18 @@ require 'shoulda/matchers'
 require 'capybara/rails'
 require 'factory_girl'
 require 'devise'
+require 'capybara/email/rspec'
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 ActiveRecord::Migration.maintain_test_schema!
 
-Capybara.app_host = 'http://example'
+Capybara.app_host = 'http://lvh.me:3000'
 
-Capybara.app_host = "http://example.com"
+#Capybara.app_host = "http://example.com"
 Capybara.configure do |config|
   config.always_include_port = true
+end
+Mail.defaults do
+  delivery_method :test
 end
 RSpec.configure do |config|
   config.include Rails.application.routes.url_helpers

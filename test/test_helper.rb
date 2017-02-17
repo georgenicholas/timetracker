@@ -8,3 +8,9 @@ class ActiveSupport::TestCase
 
   # Add more helper methods to be used by all tests here...
 end
+
+# capybara-email
+ActionDispatch::IntegrationTest
+  Capybara.server_port = 3000
+  Capybara.app_host = 'http://lvh.me:3000'
+end
