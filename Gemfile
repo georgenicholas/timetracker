@@ -27,7 +27,7 @@ end
 group :development do
   gem 'web-console', '~> 2.0'
   gem 'spring'
-
+  gem 'letter_opener'
 end
 
 group :development, :test do
@@ -40,6 +40,5 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'shoulda-matchers'
   gem 'pry-byebug'
-  gem 'letter_opener'
   gem 'capybara-email'
 end

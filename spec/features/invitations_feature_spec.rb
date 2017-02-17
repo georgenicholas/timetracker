@@ -24,7 +24,7 @@ describe 'invitations' do
     expect(page).to have_content 'invitation email has been sent'
     expect(page).to have_content 'ryan@tanookilabs.com'
     expect(page).to have_content 'Invitation Pending'
-    clear_emails
+    clear_emails 
   end
 
   it 'allows user to accept invitation' do
@@ -33,7 +33,7 @@ describe 'invitations' do
     click_button 'Invite User'
     visit users_path
     click_link 'Sign out'
-    binding.pry 
+    binding.pry
     open_email 'ryan@tanookilabs.com'
     current_email.click_link 'Accept invitation'
 
