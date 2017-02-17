@@ -30,7 +30,7 @@ describe 'invitations' do
     before do
       fill_in 'Email', with: 'ryan@tanookilabs.com'
       click_button 'Invite User'
-    end
+    end 
 
     it 'shows invitation' do
       expect(page).to have_content 'invitation email has been sent'
