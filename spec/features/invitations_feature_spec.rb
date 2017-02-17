@@ -18,26 +18,42 @@ describe 'invitations' do
     expect(page).to have_selector '.glyphicon-ok'
   end
 
-  it 'shows invitation when user is invited' do
-    fill_in 'Email', with: 'ryan@tanookilabs.com'
-    click_button 'Invite User'
-    expect(page).to have_content 'invitation email has been sent'
-    expect(page).to have_content 'ryan@tanookilabs.com'
-    expect(page).to have_content 'Invitation Pending'
-    clear_emails
-  end
+  describe 'when user is invited' do
+    before do
+      fill_in 'Email', with: 'ryan@tanookilabs.com'
+      click_button 'Invite User'
+    end
 
-  it 'allows user to accept invitation' do
-    clear_emails
-    fill_in 'Email', with: 'ryan@tanookilabs.com'
-    click_button 'Invite User'
-    visit users_path
-    click_link 'Sign out'
-    open_email 'ryan@tanookilabs.com'
-    current_email.click_link 'Accept invitation'
-    fill_in 'Name', with: 'Ryan Boland'
-    fill_in 'Password', with: 'password'
-    fill_in 'Password confirmation', with: 'password'
-    expect(page).to have_content 'Your account was created successfully'
+    it 'shows invitation' do
+      expect(page).to have_content 'invitation email has been sent'
+      expect(page).to have_content 'ryan@tanookilabs.com'
+      expect(page).to have_content 'Invitation Pending'
+      clear_emails
+    end
+
+    context 'user accepts invitation' do
+      before do
+        visit users_path
+        click_link 'Sign out'
+        open_email 'ryan@tanookilabs.com'
+        current_email.click_link 'Accept invitation'
+        fill_in 'Name', with: 'Ryan Boland'
+        fill_in 'Password', with: 'password'
+        fill_in 'Password confirmation', with: 'password'
+        click_button 'Create Account'
+      end
+      #  clear_emails
+
+      it 'confirms account create' do
+        expect(page).to have_content 'Your password was set successfully.'
+      end
+
+      it 'shows a checkmark on the users page' do
+        visit users_path
+        within('tr', text: 'Ryan Boland') do
+          expect(page).to have_selector '.glyphicon-ok'
+        end
+      end
+    end
   end
 end
