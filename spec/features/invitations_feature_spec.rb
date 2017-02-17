@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'rails_helper'
 require 'pry'
-include Capybara::Email::DSL
+
 describe 'invitations' do
   let(:user) {build(:user) }
   let!(:account) { create(:account_with_schema, owner: user) }
@@ -30,7 +30,7 @@ describe 'invitations' do
     before do
       fill_in 'Email', with: 'ryan@tanookilabs.com'
       click_button 'Invite User'
-    end 
+    end
 
     it 'shows invitation' do
       expect(page).to have_content 'invitation email has been sent'
