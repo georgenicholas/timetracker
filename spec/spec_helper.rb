@@ -1,3 +1,4 @@
+ENV["RAILS_ENV"] ||= 'test'
 require "bundler/setup"
 ::Bundler.require(:default, :test)
 require "shoulda/matchers"
