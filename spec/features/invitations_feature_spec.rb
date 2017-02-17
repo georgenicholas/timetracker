@@ -18,6 +18,14 @@ describe 'invitations' do
     expect(page).to have_selector '.glyphicon-ok'
   end
 
+  it 'validates email' do
+    visit users_path
+  #  binding.pry
+    fill_in 'Email', with: 'wrong'
+    click_button 'Invite User'
+    expect(page).to have_content 'Email is invalid'
+  end
+
   describe 'when user is invited' do
     before do
       fill_in 'Email', with: 'ryan@tanookilabs.com'
